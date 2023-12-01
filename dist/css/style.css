@@ -1,0 +1,54 @@
+.good-moral-hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 5px solid #28a745;
+  margin: 1em 0;
+  padding: 0;
+}
+.text-left p {
+  text-align: justify;
+}
+.good-moral-modal,
+.certification-of-graduation,
+.student-name,
+.school-director,
+.associate-director {
+  font-family: "Times New Roman", Times, serif;
+}
+.deped-logo {
+  position: absolute;
+  top: 3.5rem;
+  left: 1rem;
+}
+.ucc-logo {
+  position: absolute;
+  top: 3.5rem;
+  left: 37rem;
+}
+.certificate-hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 2px solid #000;
+  margin: 1em 0;
+  padding: 0;
+  margin-top: 6rem;
+  margin-bottom: 0;
+}
+.certificate-card {
+  border: 1px solid #adadad;
+}
+.student-name {
+  font-weight: 600;
+}
+.admin-btn,
+.registrar-btn {
+  width: 10rem;
+}
+@media (max-width: 1200px) {
+  .deped-logo,
+  .ucc-logo {
+    display: none;
+  }
+}
