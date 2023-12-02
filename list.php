@@ -138,7 +138,7 @@
     </div>
 
 
-  <!-- good moral modal -->
+<!--   <!-- good moral modal -->
   <div class="modal fade" id="goodMoralModal" tabindex="-1" role="dialog" aria-labelledby="goodMoralModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content">
@@ -244,8 +244,115 @@
         </div>
       </div>
     </div>
+  </div> -->
+
+  <!-- good moral modal -->
+  <div class="modal fade" id="goodMoralModal" tabindex="-1" role="dialog" aria-labelledby="goodMoralModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="goodMoralModalLabel">Good Moral</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body good-moral-modal text-center">
+          <div class="card p-5 bg-light">
+            <div class="deped-logo">
+              <img src="dist/img/deped-logo.png" alt="DepEd Logo" width="210">
+            </div>
+            <div class="ucc-logo">
+              <img src="dist/img/ucc-logo.png" alt="UCC Logo" width="120">
+            </div>
+
+            <p class="m-0">Republic of the Philippines</p>
+            <p class="m-0 font-weight-bold">Department of Education</p>
+            <p class="m-0">REGION VIII</p>
+            <p class="m-0 font-weight-bold">DIVISION OF SOUTHERN LEYTE</p>
+            <p class="m-0">District of Malitbog</p>
+            <p class="m-0 font-weight-bold">CONCEPCION NATIONAL HIGH SCHOOL</p>
+
+            <hr class="good-moral-hr">
+
+            <h2 class="pt-4">CERTIFICATION</h2>
+
+            <div class="text-left p-4">
+              <p class="font-weight-bold">TO WHOM IT MAY CONCERN:</p>
+
+              <p>
+                <span class="text-white">******</span>This is to certify that <u id="studentFullName"></u> is officially
+                enrolled as <b id="Year">th</b> Year student of <b id="course"></b>
+                during the school year <b id="schoolyear"><b>.
+              </p>
+              <p>
+                <span class="text-white">******</span>This is to certify further that he/she is a student of good moral
+                character and ahs no property or financial responsibility in this school.
+              </p>
+              <p>
+                <span class="text-white">******</span>This certification is issued upon request of the student concerned
+                for his/her desire to transfer to another school.
+              </p>
+              <p>
+                <span class="text-white">******</span>Done this 29th day of September, 2009 at Concepcion National High
+                School, Concepcion, Malitbog, Southern Leyte, Philippines.
+              </p>
+            </div>
+
+            <div class="text-right mt-5 pr-4">
+              <p class="m-0 font-weight-bold">ROSALINA L. AGAPAY</p>
+              <p class="m-0">Principal I <span class="text-white">******</span></p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick="printButton()">PRINT</button>
+
+          <input type="hidden" id="hiddendata_s">
+        </div>
+      </div>
+    </div>
   </div>
 
+  <!-- certification of graduation modal -->
+  <div class="modal fade" id="certificateModal" tabindex="-1" role="dialog" aria-labelledby="certificateModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="certificateModalLabel">Certification of Graduation</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+          <div class="card p-5 bg-light certificate-card">
+            <h3 class="certification-of-graduation">CERTIFICATE OF GRADUATION</h3>
+            <p class="mt-4 mb-4">This is awarded to</p>
+            <h1 class="student-name" id="fullname">Nicollette Loanne F. Porca</h1>
+            <p class="m-0 mt-3">for successfully completing the Timpton International High School curriculum.</p>
+
+            <div class="row text-center">
+              <div class="col-sm-2"></div>
+              <div class="col-sm-4">
+                <hr class="certificate-hr">
+                <p class="m-0 font-weight-bold school-director">Rufus Stewart</p>
+                <p class="m-0">SCHOOL DIRECTOR</p>
+              </div>
+              <div class="col-sm-4">
+                <hr class="certificate-hr">
+                <p class="m-0 font-weight-bold associate-director">Irene O'Shair</p>
+                <p class="m-0">ASSOCIATE DIRECTOR</p>
+              </div>
+              <div class="col-sm-2"></div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick="printCert()">PRINT</button>
+          <input type="hidden" id="hiddendata_certificate">
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="https://adminlte.io/themes/v3/plugins/jquery/jquery.min.js"></script>
   <script src="https://adminlte.io/themes/v3/plugins/jquery-ui/jquery-ui.min.js"></script>
@@ -550,8 +657,32 @@ function updateStatus(studentId) {
 }
 
 
-    function goodmoral(id) {
+    // function goodmoral(id) {
+    //   $('#hiddendata_s').val(id);
+    //   $('#goodMoralModal').modal("show");
+    // }
+
+     function goodmoral(id) {
       $('#hiddendata_s').val(id);
+      $.ajax({
+    url: 'goodmoralData.php', // Replace with the actual backend script URL
+    method: 'POST',
+    data: { id: id },
+    dataType: 'json',
+    success: function (data) {
+      //console.log(data)
+      // Update the modal with the student's full name
+      $('#studentFullName').text(data.fullname);
+      $('#course').text(data.abbreviation);
+      $('#Year').text(data.year + "th");
+      $('#schoolyear').text(data.schooyear);
+
+      // You might want to update other parts of the modal with additional student information
+    },
+    error: function (error) {
+      console.error('Error fetching student data:', error);
+    }
+  });
       $('#goodMoralModal').modal("show");
     }
 
@@ -574,8 +705,31 @@ function updateStatus(studentId) {
     }
 
 
+    // function certOfGrad(id) {
+    //   $('#hiddendata_certificate').val(id);
+    //   $('#certificateModal').modal("show");
+    // }
+
     function certOfGrad(id) {
       $('#hiddendata_certificate').val(id);
+
+      $.ajax({
+    url: 'goodmoralData.php', // Replace with the actual backend script URL
+    method: 'POST',
+    data: { id: id },
+    dataType: 'json',
+    success: function (data) {
+      //console.log(data)
+      // Update the modal with the student's full name
+      $('#fullname').text(data.fullname);
+
+
+      // You might want to update other parts of the modal with additional student information
+    },
+    error: function (error) {
+      console.error('Error fetching student data:', error);
+    }
+  });
       $('#certificateModal').modal("show");
     }
 
