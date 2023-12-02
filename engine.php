@@ -229,25 +229,25 @@
 
                 const studentData = await contract.methods.getStudent(studentNumber).call();
 
-          
 
-              
-                    for (const key in studentData) {
-                        if (studentData[key] !== '') {
-                            // Student data has at least one non-empty value
-                            console.log('Student Is Valid');
-                            break; // Stop iterating as data is found
-                        }else{
-                            console.log('no Student record found!');
-                            break;
-                        }
+
+
+                for (const key in studentData) {
+                    if (studentData[key] !== '') {
+                        // Student data has at least one non-empty value
+                        console.log('Student Is Valid');
+                        break; // Stop iterating as data is found
+                    } else {
+                        console.log('no Student record found!');
+                        break;
                     }
-                    // If loop finishes without finding non-empty value, data is empty
-                   
-                
+                }
+                // If loop finishes without finding non-empty value, data is empty
 
 
-                
+
+
+
 
             } catch (error) {
                 console.error('Error searching student:', error);
