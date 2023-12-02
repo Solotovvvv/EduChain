@@ -48,7 +48,7 @@ include 'includes/config.php';
 
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <li class="nav-item">
+                        <li class="nav-item menu-closed">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-user mr-3"></i>
                                 <p>Account</p>
@@ -67,8 +67,9 @@ include 'includes/config.php';
                                 </li>
                             </ul>
                         </li>
+
                         <li class="nav-item">
-                            <a href="schoolyear.php" class="nav-link">
+                            <a href="schoolyear.php" class="nav-link ">
                                 <i class="nav-icon fas fa-clock mr-3"></i>
                                 <p>Schoolyear</p>
                             </a>
@@ -79,6 +80,7 @@ include 'includes/config.php';
                                 <p>Course</p>
                             </a>
                         </li>
+
                         <li class="nav-item">
                             <a href="section.php" class="nav-link active">
                                 <i class="nav-icon fas fa-clock mr-3"></i>
@@ -86,12 +88,7 @@ include 'includes/config.php';
                             </a>
                         </li>
 
-                        <li class="nav-item">
-                            <a href="activity-log.php" class="nav-link ">
-                                <i class="nav-icon fas fa-clock mr-3"></i>
-                                <p>Activity Log</p>
-                            </a>
-                        </li>
+
                         <li class="nav-item">
                             <a href="#" class="nav-link text-danger">
                                 <i class="nav-icon fas fa-power-off mr-3"></i>

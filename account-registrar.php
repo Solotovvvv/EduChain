@@ -53,7 +53,7 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="account-admin.php" class="nav-link">
+                  <a href="account-admin.php" class="nav-link ">
                     <p>Admin</p>
                   </a>
                 </li>
@@ -64,16 +64,11 @@
                 </li>
               </ul>
             </li>
+
             <li class="nav-item">
               <a href="schoolyear.php" class="nav-link">
                 <i class="nav-icon fas fa-clock mr-3"></i>
                 <p>Schoolyear</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="schoolyear.php" class="nav-link">
-                <i class="nav-icon fas fa-clock mr-3"></i>
-                <p>section</p>
               </a>
             </li>
             <li class="nav-item">
@@ -82,6 +77,7 @@
                 <p>Course</p>
               </a>
             </li>
+
             <li class="nav-item">
               <a href="section.php" class="nav-link">
                 <i class="nav-icon fas fa-clock mr-3"></i>
@@ -89,12 +85,7 @@
               </a>
             </li>
 
-            <li class="nav-item">
-              <a href="activity-log.php" class="nav-link">
-                <i class="nav-icon fas fa-clock mr-3"></i>
-                <p>Activity Log</p>
-              </a>
-            </li>
+
             <li class="nav-item">
               <a href="#" class="nav-link text-danger">
                 <i class="nav-icon fas fa-power-off mr-3"></i>
