@@ -16,15 +16,64 @@
 
         <p class="mt-4 mb-4">Log in to your account</p>
 
-        <input type="text" class="form-control mb-2" placeholder="Username">
-        <input type="text" class="form-control mb-3" placeholder="Password">
-        <button class="btn btn-primary">LOGIN</button>
+        <input type="text" id="username" class="form-control mb-2" placeholder="Username">
+        <input type="password" id="password" class="form-control mb-3" placeholder="Password">
+        <button class="btn btn-primary" onclick="login()">LOGIN</button>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
+
+
+<script>
+     function login() {
+      var username = $('#username').val();
+      var password = $('#password').val();
+
+      if (
+        !username ||
+        !password
+      ) {
+        Swal.fire({
+          title: 'Warning',
+          text: 'Please fill out all required fields.',
+          icon: 'warning'
+        });
+        return;
+      }
+
+      var payload = {
+        username: username,
+        password: password
+      };
+
+      $.ajax({
+        type: "POST",
+        url: 'Login_back.php',
+        data: {
+          payload: JSON.stringify(payload),
+          setFunction: 'Login'
+        },
+        success: function (response) {
+          data = JSON.parse(response);
+          swal.fire(data.title, data.message, data.icon);
+          if (data.user_role === 0) {
+            setTimeout(function () {
+              window.location.href = "account-admin.php";
+            }, 2000);
+          } else if (data.user_role === 1) {
+            setTimeout(function () {
+                window.location.href = "student.php";
+            }, 2000);
+          } 
+        }
+      });
+
+    }
+</script>
 
 </html>
