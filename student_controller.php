@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (!isset($_SESSION['fullname'])) {
+    header('Location:login.php');
+    exit;
+}
 include './includes/config.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

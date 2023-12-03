@@ -1,5 +1,11 @@
 <?php
 include 'includes/config.php';
+session_start();
+if (!isset($_SESSION['fullname'])) {
+    header('Location:login.php');
+    exit;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -46,6 +52,10 @@ include 'includes/config.php';
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="info">
                         <a href="#" class="d-block">Admin</a>
+                        <a href="#" class="d-block">
+                                        <?php echo strtoupper($_SESSION['fullname']) ?>
+                                    </a>
+
                     </div>
                 </div>
 
@@ -90,7 +100,7 @@ include 'includes/config.php';
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link text-danger">
+                            <a href="logout.php" class="nav-link text-danger">
                                 <i class="nav-icon fas fa-power-off mr-3"></i>
                                 <p>Logout</p>
                             </a>
@@ -309,7 +319,7 @@ include 'includes/config.php';
 
             $.post("update_controller.php", {
                 status: status,
-                hiddendata: hiddendata,
+                hiddendatas: hiddendata,
                 course: course,
                 section: section
             }, function (data, status) {

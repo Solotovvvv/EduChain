@@ -1,3 +1,12 @@
+<?php
+session_start();
+if (!isset($_SESSION['fullname'])) {
+  header('Location:login.php');
+  exit;
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,6 +49,10 @@
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="info">
             <a href="#" class="d-block">Registrar</a>
+            <a href="#" class="d-block">
+              <?php echo strtoupper($_SESSION['fullname']) ?>
+            </a>
+
           </div>
         </div>
 
@@ -58,7 +71,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link text-danger">
+              <a href="logout.php" class="nav-link text-danger">
                 <i class="nav-icon fas fa-power-off mr-3"></i>
                 <p>Logout</p>
               </a>
@@ -95,50 +108,50 @@
   </div>
 
 
-   <!-- edit details modal -->
-   <div class="modal fade" id="store_creds" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Details</h5>
-                </div>
-                <div class="modal-body">
-                   
-
-
-                    <div class="Fullname">
-                        <label>Fullname <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="Name" readonly>
-                    </div>
-
-                    <div class="Student Number">
-                        <label>Student Number <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="StudentNumber"  readonly>
-                    </div>
-
-                    <div class="Course">
-                        <label>Course <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="Course"  readonly>
-                    </div>
-
-                    <div class="Schoolyear">
-                        <label>Schoolyear <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="Schoolyears" readonly >
-                    </div>
-
-                    
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="save()">Update</button>
-                    <input type="hidden" id="hiddendata_bc">
-                </div>
-            </div>
+  <!-- edit details modal -->
+  <div class="modal fade" id="store_creds" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Details</h5>
         </div>
+        <div class="modal-body">
+
+
+
+          <div class="Fullname">
+            <label>Fullname <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="Name" readonly>
+          </div>
+
+          <div class="Student Number">
+            <label>Student Number <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="StudentNumber" readonly>
+          </div>
+
+          <div class="Course">
+            <label>Course <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="Course" readonly>
+          </div>
+
+          <div class="Schoolyear">
+            <label>Schoolyear <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="Schoolyears" readonly>
+          </div>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="save()">Update</button>
+          <input type="hidden" id="hiddendata_bc">
+        </div>
+      </div>
     </div>
+  </div>
 
 
- 
+
 
   <!-- good moral modal -->
   <div class="modal fade" id="goodMoralModal" tabindex="-1" role="dialog" aria-labelledby="goodMoralModalLabel" aria-hidden="true">
@@ -279,118 +292,112 @@
           console.log('Current Ethereum address:', currentAccount);
 
           const contractAddress = '0xd6ceD349B1173522429cae9A2057539b61A7A0Fe';
-          const contractAbi = [
+          const contractAbi = [{
+              "anonymous": false,
+              "inputs": [{
+                  "indexed": true,
+                  "internalType": "string",
+                  "name": "studentNumber",
+                  "type": "string"
+                },
+                {
+                  "indexed": false,
+                  "internalType": "string",
+                  "name": "name",
+                  "type": "string"
+                },
+                {
+                  "indexed": false,
+                  "internalType": "string",
+                  "name": "course",
+                  "type": "string"
+                },
+                {
+                  "indexed": false,
+                  "internalType": "string",
+                  "name": "schoolYear",
+                  "type": "string"
+                },
+                {
+                  "indexed": false,
+                  "internalType": "string",
+                  "name": "university",
+                  "type": "string"
+                }
+              ],
+              "name": "StudentAdded",
+              "type": "event"
+            },
             {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "string",
-          "name": "studentNumber",
-          "type": "string"
-        },
-        {
-          "indexed": false,
-          "internalType": "string",
-          "name": "name",
-          "type": "string"
-        },
-        {
-          "indexed": false,
-          "internalType": "string",
-          "name": "course",
-          "type": "string"
-        },
-        {
-          "indexed": false,
-          "internalType": "string",
-          "name": "schoolYear",
-          "type": "string"
-        },
-        {
-          "indexed": false,
-          "internalType": "string",
-          "name": "university",
-          "type": "string"
-        }
-      ],
-      "name": "StudentAdded",
-      "type": "event"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "string",
-          "name": "_name",
-          "type": "string"
-        },
-        {
-          "internalType": "string",
-          "name": "_course",
-          "type": "string"
-        },
-        {
-          "internalType": "string",
-          "name": "_schoolYear",
-          "type": "string"
-        },
-        {
-          "internalType": "string",
-          "name": "_studentNumber",
-          "type": "string"
-        },
-        {
-          "internalType": "string",
-          "name": "_university",
-          "type": "string"
-        }
-      ],
-      "name": "addStudent",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "string",
-          "name": "_name",
-          "type": "string"
-        }
-      ],
-      "name": "getStudent",
-      "outputs": [
-        {
-          "internalType": "string",
-          "name": "",
-          "type": "string"
-        },
-        {
-          "internalType": "string",
-          "name": "",
-          "type": "string"
-        },
-        {
-          "internalType": "string",
-          "name": "",
-          "type": "string"
-        },
-        {
-          "internalType": "string",
-          "name": "",
-          "type": "string"
-        },
-        {
-          "internalType": "string",
-          "name": "",
-          "type": "string"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function",
-      "constant": true
-    }
-  
+              "inputs": [{
+                  "internalType": "string",
+                  "name": "_name",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "_course",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "_schoolYear",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "_studentNumber",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "_university",
+                  "type": "string"
+                }
+              ],
+              "name": "addStudent",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [{
+                "internalType": "string",
+                "name": "_name",
+                "type": "string"
+              }],
+              "name": "getStudent",
+              "outputs": [{
+                  "internalType": "string",
+                  "name": "",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "",
+                  "type": "string"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function",
+              "constant": true
+            }
+
           ];
 
           contract = new web3.eth.Contract(contractAbi, contractAddress);
@@ -441,114 +448,121 @@
 
 
     function store(id) {
-            $('#hiddendata_certificate').val(id);
-            $.post("storeDetails.php", {
-                id: id
-            }, function(data,
-                status) {
-                var userids = JSON.parse(data);
-                // console.log(userids)
-                $('#Name').val(userids.fullname);
-                $('#StudentNumber').val(userids.studentNumber);
-                $('#Course').val(userids.course_name);
-                $('#Schoolyears').val(userids.schooyear);
-             
+      $('#hiddendata_certificate').val(id);
+      $.post("storeDetails.php", {
+        id: id
+      }, function(data,
+        status) {
+        var userids = JSON.parse(data);
+        // console.log(userids)
+        $('#Name').val(userids.fullname);
+        $('#StudentNumber').val(userids.studentNumber);
+        $('#Course').val(userids.course_name);
+        $('#Schoolyears').val(userids.schooyear);
 
-            });
-            $('#store_creds').modal("show");
+
+      });
+      $('#store_creds').modal("show");
+    }
+
+
+
+    async function save() {
+      try {
+        const updateData = {
+          id: $('#hiddendata_certificate').val(),
+          name: $('#Name').val(),
+          StudentNumber: $('#StudentNumber').val(),
+          Course: $('#Course').val(),
+          Schoolyears: $('#Schoolyears').val(),
+          Univ: "University Of Caloocan City"
+        };
+
+        const gasEstimate = await contract.methods.addStudent(
+
+          updateData.name,
+
+          updateData.StudentNumber,
+          updateData.Course,
+          updateData.Schoolyears,
+
+          updateData.Univ
+
+        ).estimateGas({
+          from: currentAccount
+        });
+
+        const gasLimit = gasEstimate + 100000;
+
+        const tx = await contract.methods.addStudent(
+          updateData.name,
+
+          updateData.StudentNumber,
+          updateData.Course,
+          updateData.Schoolyears,
+
+          updateData.Univ
+        ).send({
+          from: currentAccount,
+          gas: gasLimit
+        });
+
+        console.log('Transaction Result:', tx);
+
+        if (tx) {
+          // If the transaction was successful, update the status in the database
+          updateStatus(updateData.id);
+
+
         }
 
 
 
-        async function save() {
-  try {
-    const updateData = {
-      id: $('#hiddendata_certificate').val(),
-      name: $('#Name').val(),
-      StudentNumber: $('#StudentNumber').val(),
-      Course: $('#Course').val(),
-      Schoolyears: $('#Schoolyears').val(),
-      Univ: "University Of Caloocan City"
-    };
+        // If the transaction is successful, update the status to 'approved' on the server.
+        // if (tx.status === true) {
+        //   const hiddendata1 = updateData.id;
+        //   const response = await fetch("blockchain_approved.php", {
+        //     method: 'POST',
+        //     headers: {
+        //       'Content-Type': 'application/x-www-form-urlencoded',
+        //     },
+        //     body: `hiddendata1=${encodeURIComponent(hiddendata1)}`,
+        //   });
 
-    const gasEstimate = await contract.methods.addStudent(
-      
-      updateData.name,
-   
-      updateData.StudentNumber,
-      updateData.Course,
-      updateData.Schoolyears,
-   
-      updateData.Univ
-   
-    ).estimateGas({ from: currentAccount });
+        //   if (response.ok) {
+        //     // Reload DataTable (assuming you have DataTables initialized)
+        //     $('#approval_tbl').DataTable().ajax.reload();
+        //     alert("Store in blockchain");
+        //   } else {
+        //     throw new Error(`Failed to update status on the server. Status: ${response.status}`);
+        //   }
+        // }
 
-    const gasLimit = gasEstimate + 100000;
-
-    const tx = await contract.methods.addStudent(
-      updateData.name,
-
-      updateData.StudentNumber,
-      updateData.Course,
-      updateData.Schoolyears,
-      
-      updateData.Univ
-    ).send({ from: currentAccount, gas: gasLimit });
-
-    console.log('Transaction Result:', tx);
-
-    if (tx) {
-      // If the transaction was successful, update the status in the database
-      updateStatus(updateData.id);
-      
-
+        $('#store_creds').modal('hide');
+      } catch (error) {
+        console.error('Error:', error);
+      }
     }
 
 
+    function updateStatus(studentId) {
+      // Make an AJAX request to update the status in the database
+      $.ajax({
+        type: 'POST',
+        url: 'update_controller.php', // Replace with the actual server-side script URL
+        data: {
+          id: studentId
+        },
+        success: function(response) {
+          console.log('Status updated in the database:', response);
 
-    // If the transaction is successful, update the status to 'approved' on the server.
-    // if (tx.status === true) {
-    //   const hiddendata1 = updateData.id;
-    //   const response = await fetch("blockchain_approved.php", {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/x-www-form-urlencoded',
-    //     },
-    //     body: `hiddendata1=${encodeURIComponent(hiddendata1)}`,
-    //   });
-
-    //   if (response.ok) {
-    //     // Reload DataTable (assuming you have DataTables initialized)
-    //     $('#approval_tbl').DataTable().ajax.reload();
-    //     alert("Store in blockchain");
-    //   } else {
-    //     throw new Error(`Failed to update status on the server. Status: ${response.status}`);
-    //   }
-    // }
-
-    $('#store_creds').modal('hide');
-  } catch (error) {
-    console.error('Error:', error);
-  }
-}
-
-
-function updateStatus(studentId) {
-  // Make an AJAX request to update the status in the database
-  $.ajax({
-    type: 'POST',
-    url: 'update_controller.php', // Replace with the actual server-side script URL
-    data: { id: studentId },
-    success: function(response) {
-      console.log('Status updated in the database:', response);
-      
-      $('#list_dt').DataTable().ajax.reload();
-    },
-    error: function(error) {
-      console.error('Error updating status in the database:', error);
+          $('#list_dt').DataTable().ajax.reload();
+        },
+        error: function(error) {
+          console.error('Error updating status in the database:', error);
+        }
+      });
     }
-  });
-}
 
 
     // function goodmoral(id) {
@@ -556,27 +570,29 @@ function updateStatus(studentId) {
     //   $('#goodMoralModal').modal("show");
     // }
 
-     function goodmoral(id) {
+    function goodmoral(id) {
       $('#hiddendata_s').val(id);
       $.ajax({
-    url: 'goodmoralData.php', // Replace with the actual backend script URL
-    method: 'POST',
-    data: { id: id },
-    dataType: 'json',
-    success: function (data) {
-      //console.log(data)
-      // Update the modal with the student's full name
-      $('#studentFullName').text(data.fullname);
-      $('#course').text(data.abbreviation);
-      $('#Year').text(data.year + "th");
-      $('#schoolyear').text(data.schooyear);
+        url: 'goodmoralData.php', // Replace with the actual backend script URL
+        method: 'POST',
+        data: {
+          id: id
+        },
+        dataType: 'json',
+        success: function(data) {
+          //console.log(data)
+          // Update the modal with the student's full name
+          $('#studentFullName').text(data.fullname);
+          $('#course').text(data.abbreviation);
+          $('#Year').text(data.year + "th");
+          $('#schoolyear').text(data.schooyear);
 
-      // You might want to update other parts of the modal with additional student information
-    },
-    error: function (error) {
-      console.error('Error fetching student data:', error);
-    }
-  });
+          // You might want to update other parts of the modal with additional student information
+        },
+        error: function(error) {
+          console.error('Error fetching student data:', error);
+        }
+      });
       $('#goodMoralModal').modal("show");
     }
 
@@ -608,22 +624,24 @@ function updateStatus(studentId) {
       $('#hiddendata_certificate').val(id);
 
       $.ajax({
-    url: 'goodmoralData.php', // Replace with the actual backend script URL
-    method: 'POST',
-    data: { id: id },
-    dataType: 'json',
-    success: function (data) {
-      //console.log(data)
-      // Update the modal with the student's full name
-      $('#fullname').text(data.fullname);
+        url: 'goodmoralData.php', // Replace with the actual backend script URL
+        method: 'POST',
+        data: {
+          id: id
+        },
+        dataType: 'json',
+        success: function(data) {
+          //console.log(data)
+          // Update the modal with the student's full name
+          $('#fullname').text(data.fullname);
 
 
-      // You might want to update other parts of the modal with additional student information
-    },
-    error: function (error) {
-      console.error('Error fetching student data:', error);
-    }
-  });
+          // You might want to update other parts of the modal with additional student information
+        },
+        error: function(error) {
+          console.error('Error fetching student data:', error);
+        }
+      });
       $('#certificateModal').modal("show");
     }
 

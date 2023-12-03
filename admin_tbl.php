@@ -10,21 +10,20 @@ include './includes/config.php';
 $pdo = Database::connection();
 
 
-$sql = "SELECT * FROM course ";
+$sql = "SELECT * FROM login WHERE role = 0 ";
 $stmt = $pdo->prepare($sql);
 
 $data = [];
 
 if ($stmt->execute()) {
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $status = ($row['status'] == 1) ? 'Available' : 'Closed';
+  
         $subarray = [
-            '<td>' . $row['course_name'] . '</td>',
-            '<td>' . $row['abbreviation'] . '</td>',
-            '<td><span class="badge badge-secondary">' . $status . '</span></td>',
+            '<td>' . $row['username'] . '</td>',
+            '<td>' . $row['full_name'] . '</td>',
             '<td>
-            <button class="btn btn-primary" onclick="edit_course(' . $row['id'] . ')"><i class="nav-icon fas fa-edit"></i></button>
-           
+            <button class="btn btn-primary" onclick="edit_admin(' . $row['id'] . ')"><i class="nav-icon fas fa-edit"></i></button>
+            <button class="btn btn-danger" onclick="delete_admin(' . $row['id'] . ')"><i class="nav-icon fas fa-trash"></i></button>
             </td>',
         ];
         $data[] = $subarray;

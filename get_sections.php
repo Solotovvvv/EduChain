@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (!isset($_SESSION['fullname'])) {
+    header('Location:login.php');
+    exit;
+}
 // get_sections.php
 include 'includes/config.php';
 // Assuming you have a database connection in your Database class

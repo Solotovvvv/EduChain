@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION['fullname'])) {
+  header('Location:login.php');
+  exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,8 +15,7 @@
   <link rel="icon" href="dist/img/ucc-logo.png" />
   <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/fontawesome-free/css/all.min.css" />
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
-  <link rel="stylesheet"
-    href="https://adminlte.io/themes/v3/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css" />
+  <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css" />
   <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/icheck-bootstrap/icheck-bootstrap.min.css" />
   <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/jqvmap/jqvmap.min.css" />
   <link rel="stylesheet" href="https://adminlte.io/themes/v3/dist/css/adminlte.min.css?v=3.2.0" />
@@ -33,15 +39,17 @@
 
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <a href="#" class="brand-link">
-        <img src="dist/img/ucc-logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-          style="opacity: 0.8" />
+        <img src="dist/img/ucc-logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: 0.8" />
         <span class="brand-text font-weight-light">EduChain</span>
       </a>
 
       <div class="sidebar">
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="info">
-            <a href="#" class="d-block">Admin</a>
+            <a href="#" class="text-center">Admin</a>
+            <a href="#" class="d-block">
+              <?php echo strtoupper($_SESSION['fullname']) ?>
+            </a>
           </div>
         </div>
 
@@ -85,7 +93,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link text-danger">
+              <a href="logout.php" class="nav-link text-danger">
                 <i class="nav-icon fas fa-power-off mr-3"></i>
                 <p>Logout</p>
               </a>
@@ -109,25 +117,14 @@
               ADMIN</button>
 
             <div class="table-responsive card p-3">
-              <table id="example" class="table table-striped table-bordered text-center" style="width: 100%">
+              <table id="admin_dt" class="table table-striped table-bordered text-center" style="width: 100%">
                 <thead>
                   <tr>
-                    <th>NO.</th>
-                    <th>NAME</th>
+                    <th>Username</th>
+                    <th>Fullname</th>
                     <th>ACTIONS</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Nicollette Porca</td>
-                    <td>
-                      <button class="btn btn-primary" data-toggle="modal" data-target="#editAdminModal"><i
-                          class="fas fa-edit"></i></button>
-                      <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                    </td>
-                  </tr>
-                </tbody>
               </table>
             </div>
           </div>
@@ -137,8 +134,7 @@
   </div>
 
   <!-- add admin modal -->
-  <div class="modal fade" id="addAdminModal" tabindex="-1" role="dialog" aria-labelledby="addAdminModalLabel"
-    aria-hidden="true">
+  <div class="modal fade" id="addAdminModal" tabindex="-1" role="dialog" aria-labelledby="addAdminModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -150,35 +146,34 @@
         <div class="modal-body">
           <div class="row mb-3">
             <div class="col-sm-12">
-              <p class="m-0 font-weight-bold">Email <span class="text-danger">*</span></p>
-              <input type="email" class="form-control" placeholder="Enter email">
+              <p class="m-0 font-weight-bold">Fullname <span class="text-danger">*</span></p>
+              <input type="email" class="form-control" placeholder="Enter Full Name" id="fullname">
             </div>
           </div>
 
           <div class="row mb-3">
             <div class="col-sm-12">
               <p class="m-0 font-weight-bold">Username <span class="text-danger">*</span></p>
-              <input type="text" class="form-control" placeholder="Enter username">
+              <input type="text" class="form-control" placeholder="Enter username" id="admin">
             </div>
           </div>
 
           <div class="row">
             <div class="col-sm-12">
               <p class="m-0 font-weight-bold">Password <span class="text-danger">*</span></p>
-              <input type="password" class="form-control" placeholder="Enter password">
+              <input type="password" class="form-control" placeholder="Enter password" id="password">
             </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary">SUBMIT</button>
+          <button type="button" class="btn btn-primary" onclick="addAdmin()">SUBMIT</button>
         </div>
       </div>
     </div>
   </div>
 
   <!-- edit admin modal -->
-  <div class="modal fade" id="editAdminModal" tabindex="-1" role="dialog" aria-labelledby="editAdminModalLabel"
-    aria-hidden="true">
+  <div class="modal fade" id="editAdminModal" tabindex="-1" role="dialog" aria-labelledby="editAdminModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -190,57 +185,156 @@
         <div class="modal-body">
           <div class="row mb-3">
             <div class="col-sm-12">
-              <p class="m-0 font-weight-bold">Email <span class="text-danger">*</span></p>
-              <input type="email" class="form-control" placeholder="Enter email">
+              <p class="m-0 font-weight-bold">Fullname <span class="text-danger">*</span></p>
+              <input type="email" class="form-control" placeholder="Enter Full Name" id="edit_fullname">
             </div>
           </div>
 
           <div class="row mb-3">
             <div class="col-sm-12">
               <p class="m-0 font-weight-bold">Username <span class="text-danger">*</span></p>
-              <input type="text" class="form-control" placeholder="Enter username">
+              <input type="text" class="form-control" placeholder="Enter username" id="edit_admin">
             </div>
           </div>
 
           <div class="row">
             <div class="col-sm-12">
               <p class="m-0 font-weight-bold">Password <span class="text-danger">*</span></p>
-              <input type="password" class="form-control" placeholder="Enter password">
+              <input type="password" class="form-control" placeholder="Enter password" id="edit_password">
             </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary">SAVE CHANGES</button>
+          <button type="button" class="btn btn-primary" onclick="update_admin()">SAVE CHANGES</button>
+          <input type="text" id="hiddendata_id">
         </div>
       </div>
     </div>
   </div>
 
-  <script src="https://adminlte.io/themes/v3/plugins/jquery/jquery.min.js"></script>
-  <script src="https://adminlte.io/themes/v3/plugins/jquery-ui/jquery-ui.min.js"></script>
-  <script>
-    $.widget.bridge("uibutton", $.ui.button);
-  </script>
-  <script src="https://adminlte.io/themes/v3/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="https://adminlte.io/themes/v3/plugins/chart.js/Chart.min.js"></script>
-  <script src="https://adminlte.io/themes/v3/plugins/sparklines/sparkline.js"></script>
-  <script src="https://adminlte.io/themes/v3/plugins/jqvmap/jquery.vmap.min.js"></script>
-  <script src="https://adminlte.io/themes/v3/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-  <script src="https://adminlte.io/themes/v3/plugins/jquery-knob/jquery.knob.min.js"></script>
-  <script src="https://adminlte.io/themes/v3/plugins/moment/moment.min.js"></script>
-  <script src="https://adminlte.io/themes/v3/plugins/daterangepicker/daterangepicker.js"></script>
-  <script
-    src="https://adminlte.io/themes/v3/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-  <script src="https://adminlte.io/themes/v3/plugins/summernote/summernote-bs4.min.js"></script>
-  <script src="https://adminlte.io/themes/v3/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-  <script src="https://adminlte.io/themes/v3/dist/js/adminlte.js?v=3.2.0"></script>
-  <script src="https://adminlte.io/themes/v3/dist/js/pages/dashboard.js"></script>
-  <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-  <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap4.min.js"></script>
-  <script>
-    $("#example").DataTable();
-  </script>
+  < <script src="https://adminlte.io/themes/v3/plugins/jquery/jquery.min.js">
+    </script>
+    <script src="https://adminlte.io/themes/v3/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script>
+      $.widget.bridge("uibutton", $.ui.button);
+    </script>
+    <script src="https://adminlte.io/themes/v3/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://adminlte.io/themes/v3/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <script src="https://adminlte.io/themes/v3/dist/js/adminlte.js?v=3.2.0"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+      $(document).ready(function() {
+
+        $('#admin_dt').DataTable({
+          'serverside': true,
+          'processing': true,
+          'paging': true,
+          "columnDefs": [{
+            "className": "dt-center",
+            "targets": "_all"
+          }, ],
+          'ajax': {
+            'url': 'admin_tbl.php',
+            'type': 'post',
+
+          },
+        });
+
+      });
+
+      function addAdmin() {
+        $.ajax({
+          url: 'admin_controller_crud.php',
+          method: 'POST',
+          data: {
+            admin: $('#admin').val(),
+            password: $('#password').val(),
+            fullname: $('#fullname').val()
+          },
+          success: function(response) {
+            var data = JSON.parse(response);
+            if (data.status == 'data_exist') {
+              alert('Data already exists.');
+            } else if (data.status == 'success') {
+              var c = $('#admin_dt').DataTable().ajax.reload();
+              alert('Data added successfully.');
+            } else {
+              alert('Failed to add data.');
+            }
+            $('#admin').val('');
+            $('#password').val('');
+            $('#fullname').val('');
+
+            $('#addAdminModal').modal("hide");
+          },
+          error: function(xhr, status, error) {
+            alert('Error: ' + error);
+          }
+        });
+      }
+
+
+      function edit_admin(id) {
+        $('#hiddendata_id').val(id);
+        $.post("admin_controller_crud.php", {
+          id: id
+        }, function(data,
+          status) {
+          var userids = JSON.parse(data);
+          $('#edit_fullname').val(userids.full_name);
+          $('#edit_admin').val(userids.username);
+          // $('#edit_password').val(userids.password);
+        });
+        $('#editAdminModal').modal("show");
+      }
+
+      function update_admin() {
+        var fullname = $('#edit_fullname').val()
+        var username = $('#edit_admin').val();
+        var password = $('#edit_password').val();
+        var hiddendata_update = $('#hiddendata_id').val();
+
+
+        $.post("admin_controller_crud.php", {
+          password: password,
+          hiddendata_update: hiddendata_update,
+          username: username,
+          fullname: fullname
+        }, function(data, status) {
+          var jsons = JSON.parse(data);
+          status = jsons.status;
+          if (status == 'success') {
+            var update = $('#admin_dt').DataTable().ajax.reload();
+          }
+          $('#editAdminModal').modal("hide");
+        });
+
+      }
+
+
+      function delete_admin(id) {
+        $.ajax({
+
+          url: 'admin_controller_crud.php',
+          type: 'post',
+          data: {
+            remove: id
+          },
+          success: function(data, status) {
+
+            var json = JSON.parse(data);
+            status = json.status;
+            if (status == 'success') {
+
+              $('#admin_dt').DataTable().ajax.reload();
+
+
+            }
+          }
+        })
+      }
+    </script>
 </body>
 
 </html>

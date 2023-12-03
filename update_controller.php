@@ -1,11 +1,16 @@
 <?php
+session_start();
+if (!isset($_SESSION['fullname'])) {
+    header('Location:login.php');
+    exit;
+}
 include 'includes/config.php';
 
 $pdo = Database::connection();
 
-if (isset($_POST['update_course'])) {
+if (isset($_POST['hiddendata'])) {
     // Update for the course table
-    $id = $_POST['update_course'];
+    $id = $_POST['hiddendata'];
     $status = $_POST['status'];
     $course = $_POST['course'];
     $abbreviation = $_POST['abbre'];
@@ -29,8 +34,8 @@ if (isset($_POST['update_course'])) {
         );
     }
     echo json_encode($data);
-} elseif (isset($_POST['hiddendata'])) {
-    $id = $_POST['hiddendata'];
+} elseif (isset($_POST['hiddendatas'])) {
+    $id = $_POST['hiddendatas'];
     $status = $_POST['status'];
     $section = $_POST['section'];
     $course = $_POST['course'];
@@ -54,6 +59,7 @@ if (isset($_POST['update_course'])) {
         );
     }
     echo json_encode($data);
+
 }elseif (isset($_POST['hiddendata_sy'])) {
     $id = $_POST['hiddendata_sy'];
     $status = $_POST['status'];
