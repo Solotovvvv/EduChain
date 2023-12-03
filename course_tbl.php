@@ -15,7 +15,7 @@ if ($stmt->execute()) {
         $subarray = [
             '<td>' . $row['course_name'] . '</td>',
             '<td>' . $row['abbreviation'] . '</td>',
-            '<td>' . $status . '</td>',
+            '<td><span class="badge badge-secondary">' . $status . '</span></td>',
             '<td>
             <button class="btn btn-primary" onclick="edit_course(' . $row['id'] . ')"><i class="nav-icon fas fa-edit"></i></button>
            

@@ -43,9 +43,19 @@
   font-weight: 600;
 }
 .admin-btn,
-.registrar-btn {
+.registrar-btn,
+.schoolyear-btn {
   width: 10rem;
 }
+.login-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 25rem;
+  padding: 2rem;
+}
+
 @media (max-width: 1200px) {
   .deped-logo,
   .ucc-logo {

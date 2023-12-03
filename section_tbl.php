@@ -16,7 +16,7 @@ if ($stmt->execute()) {
         $subarray = [
             '<td>' . $row['course_abbreviation'] . '</td>', // Use the alias for course abbreviation
             '<td>' . $row['section'] . '</td>',
-            '<td>' . $status . '</td>',
+            '<td><span class="badge badge-secondary">' . $status . '</span></td>',
             '<td><button class="btn btn-primary" onclick="edit_section(' . $row['id'] . ')"><i class="nav-icon fas fa-edit"></i></button></td>',
         ];
         $data[] = $subarray;

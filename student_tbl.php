@@ -20,7 +20,7 @@ if ($stmt->execute()) {
             '<td>' . $row['schooyear'] . '</td>',
             '<td>
                 <button class="btn btn-primary" onclick="edit_student(' . $row['id'] . ')"><i class="nav-icon fas fa-edit"></i></button>
-                <button class="btn btn-danger" onclick="delete_student(' . $row['id'] . ')"><i class="nav-icon fas fa-trash"></i></button>
+                <button class="btn btn-danger" onclick="delete_student(' . $row['id'] . ')"><i class="nav-icon fas fa-trash-alt"></i></button>
             </td>',
         ];
         $data[] = $subarray;

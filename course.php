@@ -4,15 +4,17 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Activity Log</title>
+    <title>Course</title>
     <link rel="icon" href="dist/img/ucc-logo.png" />
     <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/fontawesome-free/css/all.min.css" />
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
-    <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css" />
+    <link rel="stylesheet"
+        href="https://adminlte.io/themes/v3/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css" />
     <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/icheck-bootstrap/icheck-bootstrap.min.css" />
     <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/jqvmap/jqvmap.min.css" />
     <link rel="stylesheet" href="https://adminlte.io/themes/v3/dist/css/adminlte.min.css?v=3.2.0" />
-    <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/overlayScrollbars/css/OverlayScrollbars.min.css" />
+    <link rel="stylesheet"
+        href="https://adminlte.io/themes/v3/plugins/overlayScrollbars/css/OverlayScrollbars.min.css" />
     <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/daterangepicker/daterangepicker.css" />
     <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/summernote/summernote-bs4.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" />
@@ -31,7 +33,8 @@
 
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <a href="#" class="brand-link">
-                <img src="dist/img/ucc-logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: 0.8" />
+                <img src="dist/img/ucc-logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                    style="opacity: 0.8" />
                 <span class="brand-text font-weight-light">EduChain</span>
             </a>
 
@@ -43,7 +46,8 @@
                 </div>
 
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
                         <li class="nav-item menu-closed">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-user mr-3"></i>
@@ -63,28 +67,24 @@
                                 </li>
                             </ul>
                         </li>
-
                         <li class="nav-item">
                             <a href="schoolyear.php" class="nav-link ">
-                                <i class="nav-icon fas fa-clock mr-3"></i>
-                                <p>Schoolyear</p>
+                                <i class="nav-icon fas fa-calendar-alt mr-3"></i>
+                                <p>School Year</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="course.php" class="nav-link active">
-                                <i class="nav-icon fas fa-clock mr-3"></i>
+                                <i class="nav-icon fas fa-graduation-cap mr-3"></i>
                                 <p>Course</p>
                             </a>
                         </li>
-
                         <li class="nav-item">
                             <a href="section.php" class="nav-link">
-                                <i class="nav-icon fas fa-clock mr-3"></i>
-                                <p>section</p>
+                                <i class="nav-icon fas fa-list mr-3"></i>
+                                <p>Section</p>
                             </a>
                         </li>
-
-
                         <li class="nav-item">
                             <a href="#" class="nav-link text-danger">
                                 <i class="nav-icon fas fa-power-off mr-3"></i>
@@ -107,15 +107,16 @@
                 <div class="container">
                     <div class="card p-3">
                         <div class="print-button mb-3">
-                            <button class="btn btn-primary" id="add-department" data-toggle="modal" data-target="#add_course">Add Course</button>
+                            <button class="btn btn-primary" id="add-department" data-toggle="modal"
+                                data-target="#add_course">ADD COURSE</button>
                         </div>
                         <div class="card p-3">
                             <table id="course_dt" class="table table-striped table-bordered" style="width: 100%">
                                 <thead>
                                     <tr>
-                                        <th>Course</th>
-                                        <th>Abbreviation</th>
-                                        <th>Status</th>
+                                        <th>COURSE</th>
+                                        <th>ABBREVIATION</th>
+                                        <th>STATUS</th>
                                         <th>ACTIONS</th>
                                     </tr>
                                 </thead>
@@ -128,50 +129,53 @@
     </div>
 
     <!-- add course modal -->
-    <div class="modal fade" id="add_course" tabindex="-1" role="dialog" aria-labelledby="addDepartmentModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <div class="modal fade" id="add_course" tabindex="-1" role="dialog" aria-labelledby="addDepartmentModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addDepartmentModalLabel">Add Courses</h5>
+                    <h5 class="modal-title" id="addDepartmentModalLabel">Add Course</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
-                    <div class="course">
+                    <div class="course mb-3">
                         <label>Course <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="course" placeholder="Enter course name">
                     </div>
-
-                    <div class="course">
+                    <div class="abbreviation">
                         <label>Abbreviation <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="Abbreviation" placeholder="Enter course name">
+                        <input type="text" class="form-control" id="Abbreviation" placeholder="Enter abbreviation name">
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="Add_courses()">Add</button>
-                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal"
+                        onclick="Add_courses()">SUBMIT</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- edit details modal -->
+    <!-- edit course modal -->
     <div class="modal fade" id="update_course" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Details</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Course</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
-                    <div class="course mb-2">
+                    <div class="course mb-3">
                         <label>Course <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="update_coursess" placeholder="Enter new course name">
+                        <input type="text" class="form-control" id="update_coursess" placeholder="Enter course name">
                     </div>
-
-
-                    <div class="course">
+                    <div class="abbreviation mb-3">
                         <label>Abbreviation <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="update_abbre" placeholder="Enter course name">
+                        <input type="text" class="form-control" id="update_abbre" placeholder="Enter abbreviation name">
                     </div>
-
                     <div class="status">
                         <label>Status <span class="text-danger">*</span></label>
                         <select class="form-control" name="" id="update_course_status">
@@ -182,8 +186,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="course_update()">Update</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="course_update()">SAVE
+                        CHANGES</button>
                     <input type="hidden" id="hiddendata_course">
                 </div>
             </div>
@@ -196,10 +200,12 @@
         $.widget.bridge("uibutton", $.ui.button);
     </script>
     <script src="https://adminlte.io/themes/v3/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://adminlte.io/themes/v3/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <script src="https://adminlte.io/themes/v3/dist/js/adminlte.js?v=3.2.0"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap4.min.js"></script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
 
             $('#course_dt').DataTable({
                 'serverside': true,
@@ -208,7 +214,7 @@
                 "columnDefs": [{
                     "className": "dt-center",
                     "targets": "_all"
-                }, ],
+                },],
                 'ajax': {
                     'url': 'course_tbl.php',
                     'type': 'post',
@@ -226,7 +232,7 @@
                     course: $('#course').val(),
                     abbreviation: $('#Abbreviation').val()
                 },
-                success: function(response) {
+                success: function (response) {
                     var data = JSON.parse(response);
                     if (data.status == 'data_exist') {
                         alert('Data already exists.');
@@ -239,7 +245,7 @@
                     $('#course').val('');
                     $('#Abbreviation').val('');
                 },
-                error: function(xhr, status, error) {
+                error: function (xhr, status, error) {
                     alert('Error: ' + error);
                 }
             });
@@ -249,7 +255,7 @@
             $('#hiddendata_course').val(update);
             $.post("course_controller.php", {
                 update: update
-            }, function(data,
+            }, function (data,
                 status) {
                 var userids = JSON.parse(data);
                 $('#update_coursess').val(userids.course_name);
@@ -273,7 +279,7 @@
                 hiddendata: hiddendata,
                 course: course,
                 abbre: abbre
-            }, function(data, status) {
+            }, function (data, status) {
                 var jsons = JSON.parse(data);
                 status = jsons.status;
                 if (status == 'success') {
