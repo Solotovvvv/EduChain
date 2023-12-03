@@ -1,61 +1,41 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Search Engine</title>
-    <style>
-        /* Add your custom styles here */
-        body {
-            font-family: Arial, sans-serif;
-        }
-
-        .container {
-            max-width: 600px;
-            margin: auto;
-        }
-
-        #searchForm {
-            margin-bottom: 20px;
-        }
-
-        #validationMessage {
-            color: red;
-            margin-top: 10px;
-        }
-
-        #studentData {
-            margin-top: 20px;
-        }
-    </style>
-    <!-- Include jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI/t1fWCf5LkPnOz61uv5Ae6KwGRNxg+g7Nv7UkE=" crossorigin="anonymous"></script>
+    <title>Search Engine</title>
+    <link rel="icon" href="dist/img/ucc-logo.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="dist/css/style.css">
 </head>
 
-<body>
-    <div class="container">
-        <div id="searchForm">
-            <label for="studentIdInput">Enter Student Number:</label>
-            <input type="text" id="studentIdInput" placeholder="Student Number" required>
-            <button id="searchButton">Search</button>
-        </div>
+<body class="bg-success text-light">
+    <div class="container text-center">
+        <div class="card engine-card">
+            <div>
+                <img src="dist/img/ucc-logo.png" alt="UCC Logo" width="200">
+            </div>
+            <label for="studentIdInput" class="ucc-title mt-3 mb-3">UNIVERSITY OF CALOOCAN CITY</label>
+            
+            <div id="searchForm" class="input-group">
+                <input type="text" id="studentIdInput" placeholder="Student Name" required class="form-control form-control-lg student-input">
+                <button id="searchButton" class="btn btn-secondary btn-lg search-btn">Search</button>
+            </div>
 
-        <div id="validationMessage"></div>
+            <div id="validationMessage"></div>
 
-        <div id="studentData">
-            <div id="studentName"></div>
-            <div id="studentCourse"></div>
-            <div id="studentSchoolYear"></div>
-            <div id="studentNumber"></div>
-            <div id="studentUniversity"></div>
+            <div id="studentData">
+                <div id="studentName"></div>
+                <div id="studentCourse"></div>
+                <div id="studentSchoolYear"></div>
+                <div id="studentNumber"></div>
+                <div id="studentUniversity"></div>
+            </div>
         </div>
     </div>
 
-
-    <script src="https://adminlte.io/themes/v3/plugins/jquery/jquery.min.js"></script>
+    <!-- <script src="https://adminlte.io/themes/v3/plugins/jquery/jquery.min.js"></script>
     <script src="https://adminlte.io/themes/v3/plugins/jquery-ui/jquery-ui.min.js"></script>
     <script src="https://adminlte.io/themes/v3/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="https://adminlte.io/themes/v3/plugins/datatables/jquery.dataTables.min.js"></script>
@@ -63,9 +43,12 @@
     <script src="https://adminlte.io/themes/v3/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
     <script src="https://adminlte.io/themes/v3/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
     <script src="https://adminlte.io/themes/v3/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/web3@1.3.6/dist/web3.min.js"></script>
-
 
     <script>
         let contract;
@@ -88,110 +71,110 @@
 
                     const contractAddress = '0xd6ceD349B1173522429cae9A2057539b61A7A0Fe';
                     const contractAbi = [{
-                            "anonymous": false,
-                            "inputs": [{
-                                    "indexed": true,
-                                    "internalType": "string",
-                                    "name": "studentNumber",
-                                    "type": "string"
-                                },
-                                {
-                                    "indexed": false,
-                                    "internalType": "string",
-                                    "name": "name",
-                                    "type": "string"
-                                },
-                                {
-                                    "indexed": false,
-                                    "internalType": "string",
-                                    "name": "course",
-                                    "type": "string"
-                                },
-                                {
-                                    "indexed": false,
-                                    "internalType": "string",
-                                    "name": "schoolYear",
-                                    "type": "string"
-                                },
-                                {
-                                    "indexed": false,
-                                    "internalType": "string",
-                                    "name": "university",
-                                    "type": "string"
-                                }
-                            ],
-                            "name": "StudentAdded",
-                            "type": "event"
+                        "anonymous": false,
+                        "inputs": [{
+                            "indexed": true,
+                            "internalType": "string",
+                            "name": "studentNumber",
+                            "type": "string"
                         },
                         {
-                            "inputs": [{
-                                    "internalType": "string",
-                                    "name": "_name",
-                                    "type": "string"
-                                },
-                                {
-                                    "internalType": "string",
-                                    "name": "_course",
-                                    "type": "string"
-                                },
-                                {
-                                    "internalType": "string",
-                                    "name": "_schoolYear",
-                                    "type": "string"
-                                },
-                                {
-                                    "internalType": "string",
-                                    "name": "_studentNumber",
-                                    "type": "string"
-                                },
-                                {
-                                    "internalType": "string",
-                                    "name": "_university",
-                                    "type": "string"
-                                }
-                            ],
-                            "name": "addStudent",
-                            "outputs": [],
-                            "stateMutability": "nonpayable",
-                            "type": "function"
+                            "indexed": false,
+                            "internalType": "string",
+                            "name": "name",
+                            "type": "string"
                         },
                         {
-                            "inputs": [{
-                                "internalType": "string",
-                                "name": "_name",
-                                "type": "string"
-                            }],
-                            "name": "getStudent",
-                            "outputs": [{
-                                    "internalType": "string",
-                                    "name": "",
-                                    "type": "string"
-                                },
-                                {
-                                    "internalType": "string",
-                                    "name": "",
-                                    "type": "string"
-                                },
-                                {
-                                    "internalType": "string",
-                                    "name": "",
-                                    "type": "string"
-                                },
-                                {
-                                    "internalType": "string",
-                                    "name": "",
-                                    "type": "string"
-                                },
-                                {
-                                    "internalType": "string",
-                                    "name": "",
-                                    "type": "string"
-                                }
-                            ],
-                            "stateMutability": "view",
-                            "type": "function",
-                            "constant": true
+                            "indexed": false,
+                            "internalType": "string",
+                            "name": "course",
+                            "type": "string"
+                        },
+                        {
+                            "indexed": false,
+                            "internalType": "string",
+                            "name": "schoolYear",
+                            "type": "string"
+                        },
+                        {
+                            "indexed": false,
+                            "internalType": "string",
+                            "name": "university",
+                            "type": "string"
                         }
+                        ],
+                        "name": "StudentAdded",
+                        "type": "event"
+                    },
+                    {
+                        "inputs": [{
+                            "internalType": "string",
+                            "name": "_name",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "_course",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "_schoolYear",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "_studentNumber",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "_university",
+                            "type": "string"
+                        }
+                        ],
+                        "name": "addStudent",
+                        "outputs": [],
+                        "stateMutability": "nonpayable",
+                        "type": "function"
+                    },
+                    {
+                        "inputs": [{
+                            "internalType": "string",
+                            "name": "_name",
+                            "type": "string"
+                        }],
+                        "name": "getStudent",
+                        "outputs": [{
+                            "internalType": "string",
+                            "name": "",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "",
+                            "type": "string"
+                        }
+                        ],
+                        "stateMutability": "view",
+                        "type": "function",
+                        "constant": true
+                    }
 
 
                     ];
@@ -219,8 +202,8 @@
             }
         });
 
-        $(document).ready(function() {
-            $('#searchButton').on('click', function() {
+        $(document).ready(function () {
+            $('#searchButton').on('click', function () {
                 searchStudent();
             });
         });

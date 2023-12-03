@@ -47,18 +47,54 @@
 .schoolyear-btn {
   width: 10rem;
 }
-.login-card {
+.login-card,
+.engine-card,
+.valid-card,
+.invalid-card {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+.login-card {
   width: 25rem;
   padding: 2rem;
+}
+.engine-card {
+  background: none;
+  border: 0;
+  padding: 1rem;
+}
+.ucc-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+}
+.student-input,
+.search-btn {
+  font-size: 1.5rem;
+  border-radius: 0;
+  padding: 1rem;
+}
+.valid-card,
+.invalid-card {
+  padding: 2rem 1rem 1rem;
+}
+.valid-icon,
+.invalid-icon {
+  font-size: 10rem;
+}
+.valid-text,
+.invalid-text {
+  font-size: 1.5rem;
 }
 
 @media (max-width: 1200px) {
   .deped-logo,
   .ucc-logo {
     display: none;
+  }
+  .valid-card,
+  .invalid-card {
+    width: 25rem;
   }
 }
