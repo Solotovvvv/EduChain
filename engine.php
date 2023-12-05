@@ -8,6 +8,9 @@
     <link rel="icon" href="dist/img/ucc-logo.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="dist/css/style.css">
+
+
+
 </head>
 
 <body class="bg-success text-light">
@@ -19,7 +22,8 @@
             <label for="studentIdInput" class="ucc-title mt-3 mb-3">UNIVERSITY OF CALOOCAN CITY</label>
 
             <div id="searchForm" class="input-group">
-                <input type="text" id="studentIdInput" placeholder="Student Name" required class="form-control form-control-lg student-input">
+                <input type="text" id="studentIdInput" placeholder="Student Name" required
+                    class="form-control form-control-lg student-input">
                 <button id="searchButton" class="btn btn-secondary btn-lg search-btn">Search</button>
             </div>
 
@@ -70,112 +74,112 @@
 
                     console.log('Current Ethereum address:', currentAccount);
 
-                    const contractAddress = '0xd6ceD349B1173522429cae9A2057539b61A7A0Fe';
+                    const contractAddress = '0xF4FD45271087e1f479ea5259bC493535340d0fB3';
                     const contractAbi = [{
-                            "anonymous": false,
-                            "inputs": [{
-                                    "indexed": true,
-                                    "internalType": "string",
-                                    "name": "studentNumber",
-                                    "type": "string"
-                                },
-                                {
-                                    "indexed": false,
-                                    "internalType": "string",
-                                    "name": "name",
-                                    "type": "string"
-                                },
-                                {
-                                    "indexed": false,
-                                    "internalType": "string",
-                                    "name": "course",
-                                    "type": "string"
-                                },
-                                {
-                                    "indexed": false,
-                                    "internalType": "string",
-                                    "name": "schoolYear",
-                                    "type": "string"
-                                },
-                                {
-                                    "indexed": false,
-                                    "internalType": "string",
-                                    "name": "university",
-                                    "type": "string"
-                                }
-                            ],
-                            "name": "StudentAdded",
-                            "type": "event"
+                        "anonymous": false,
+                        "inputs": [{
+                            "indexed": true,
+                            "internalType": "string",
+                            "name": "studentNumber",
+                            "type": "string"
                         },
                         {
-                            "inputs": [{
-                                    "internalType": "string",
-                                    "name": "_name",
-                                    "type": "string"
-                                },
-                                {
-                                    "internalType": "string",
-                                    "name": "_course",
-                                    "type": "string"
-                                },
-                                {
-                                    "internalType": "string",
-                                    "name": "_schoolYear",
-                                    "type": "string"
-                                },
-                                {
-                                    "internalType": "string",
-                                    "name": "_studentNumber",
-                                    "type": "string"
-                                },
-                                {
-                                    "internalType": "string",
-                                    "name": "_university",
-                                    "type": "string"
-                                }
-                            ],
-                            "name": "addStudent",
-                            "outputs": [],
-                            "stateMutability": "nonpayable",
-                            "type": "function"
+                            "indexed": false,
+                            "internalType": "string",
+                            "name": "name",
+                            "type": "string"
                         },
                         {
-                            "inputs": [{
-                                "internalType": "string",
-                                "name": "_name",
-                                "type": "string"
-                            }],
-                            "name": "getStudent",
-                            "outputs": [{
-                                    "internalType": "string",
-                                    "name": "",
-                                    "type": "string"
-                                },
-                                {
-                                    "internalType": "string",
-                                    "name": "",
-                                    "type": "string"
-                                },
-                                {
-                                    "internalType": "string",
-                                    "name": "",
-                                    "type": "string"
-                                },
-                                {
-                                    "internalType": "string",
-                                    "name": "",
-                                    "type": "string"
-                                },
-                                {
-                                    "internalType": "string",
-                                    "name": "",
-                                    "type": "string"
-                                }
-                            ],
-                            "stateMutability": "view",
-                            "type": "function",
-                            "constant": true
+                            "indexed": false,
+                            "internalType": "string",
+                            "name": "course",
+                            "type": "string"
+                        },
+                        {
+                            "indexed": false,
+                            "internalType": "string",
+                            "name": "schoolYear",
+                            "type": "string"
+                        },
+                        {
+                            "indexed": false,
+                            "internalType": "string",
+                            "name": "university",
+                            "type": "string"
                         }
+                        ],
+                        "name": "StudentAdded",
+                        "type": "event"
+                    },
+                    {
+                        "inputs": [{
+                            "internalType": "string",
+                            "name": "_name",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "_course",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "_schoolYear",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "_studentNumber",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "_university",
+                            "type": "string"
+                        }
+                        ],
+                        "name": "addStudent",
+                        "outputs": [],
+                        "stateMutability": "nonpayable",
+                        "type": "function"
+                    },
+                    {
+                        "inputs": [{
+                            "internalType": "string",
+                            "name": "_name",
+                            "type": "string"
+                        }],
+                        "name": "getStudent",
+                        "outputs": [{
+                            "internalType": "string",
+                            "name": "",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "",
+                            "type": "string"
+                        }
+                        ],
+                        "stateMutability": "view",
+                        "type": "function",
+                        "constant": true
+                    }
 
 
                     ];
@@ -203,8 +207,8 @@
             }
         });
 
-        $(document).ready(function() {
-            $('#searchButton').on('click', function() {
+        $(document).ready(function () {
+            $('#searchButton').on('click', function () {
                 searchStudent();
             });
         });
@@ -214,9 +218,6 @@
                 const studentNumber = $('#studentIdInput').val();
 
                 const studentData = await contract.methods.getStudent(studentNumber).call();
-
-
-
 
                 for (const key in studentData) {
                     if (studentData[key] !== '') {
@@ -230,16 +231,17 @@
                         var schoolyear = studentData[3];
                         var univ = studentData[4];
 
-                        var formattedString = `${name} completed a ${course}'s Degree at ${univ} on ${schoolyear}.`;
+                        // var formattedString = `${name} .'<'. ${course}'s \n ${univ} \n ${schoolyear}.`;
                         Swal.fire({
                             title: 'Student Exist!',
-                            text: formattedString,
+                            html: `${name} <br> ${course} <br> ${univ} <br> ${schoolyear}`,
                             icon: 'success',
-                            confirmButtonText: 'OK',
-                        }).then(() => {
-                    // Reload the page when the user clicks "OK"
-                    location.reload();
-                });
+                            confirmButtonText: 'OK'
+                        })
+                        .then(() => {
+                            // Reload the page when the user clicks "OK"
+                            location.reload();
+                        });
 
 
                         break; // Stop iterating as data is found
@@ -251,19 +253,14 @@
                             icon: 'error',
                             confirmButtonText: 'OK',
                         }).then(() => {
-                    // Reload the page when the user clicks "OK"
-                    location.reload();
-                });
+                            // Reload the page when the user clicks "OK"
+                            location.reload();
+                        });
 
                         break;
                     }
-                 
+
                 }
-                // If loop finishes without finding non-empty value, data is empty
-
-
-
-
 
 
             } catch (error) {

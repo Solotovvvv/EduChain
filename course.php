@@ -209,6 +209,7 @@ if (!isset($_SESSION['fullname'])) {
     <script src="https://adminlte.io/themes/v3/dist/js/adminlte.js?v=3.2.0"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
         $(document).ready(function() {
 
@@ -240,10 +241,20 @@ if (!isset($_SESSION['fullname'])) {
                 success: function(response) {
                     var data = JSON.parse(response);
                     if (data.status == 'data_exist') {
-                        alert('Data already exists.');
+                        Swal.fire({
+                            title: 'Record Already Exist!',
+                            icon: 'warning',
+                            showConfirmButton: false,
+                            timer: 1000
+                        });
                     } else if (data.status == 'success') {
                         var c = $('#course_dt').DataTable().ajax.reload();
-                        alert('Data added successfully.');
+                        Swal.fire({
+                            title: 'Record Added!',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 1000
+                        });
                     } else {
                         alert('Failed to add data.');
                     }
@@ -289,6 +300,12 @@ if (!isset($_SESSION['fullname'])) {
                 status = jsons.status;
                 if (status == 'success') {
                     var update = $('#course_dt').DataTable().ajax.reload();
+                    Swal.fire({
+                        title: 'Record Updated!',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
                 }
             });
         }

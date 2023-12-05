@@ -18,7 +18,8 @@ include 'includes/config.php';
   <link rel="icon" href="dist/img/ucc-logo.png" />
   <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/fontawesome-free/css/all.min.css" />
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
-  <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css" />
+  <link rel="stylesheet"
+    href="https://adminlte.io/themes/v3/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css" />
   <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/icheck-bootstrap/icheck-bootstrap.min.css" />
   <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/jqvmap/jqvmap.min.css" />
   <link rel="stylesheet" href="https://adminlte.io/themes/v3/dist/css/adminlte.min.css?v=3.2.0" />
@@ -41,7 +42,8 @@ include 'includes/config.php';
 
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <a href="#" class="brand-link">
-        <img src="dist/img/ucc-logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: 0.8" />
+        <img src="dist/img/ucc-logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+          style="opacity: 0.8" />
         <span class="brand-text font-weight-light">EduChain</span>
       </a>
 
@@ -121,7 +123,8 @@ include 'includes/config.php';
   </div>
 
   <!-- add student modal -->
-  <div class="modal fade" id="addStudentModal" tabindex="-1" role="dialog" aria-labelledby="addStudentModalLabel" aria-hidden="true">
+  <div class="modal fade" id="addStudentModal" tabindex="-1" role="dialog" aria-labelledby="addStudentModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -201,7 +204,8 @@ include 'includes/config.php';
   </div>
 
   <!-- edit student modal -->
-  <div class="modal fade" id="editStudentModal" tabindex="-1" role="dialog" aria-labelledby="editStudentModalLabel" aria-hidden="true">
+  <div class="modal fade" id="editStudentModal" tabindex="-1" role="dialog" aria-labelledby="editStudentModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -287,9 +291,10 @@ include 'includes/config.php';
   <script src="https://adminlte.io/themes/v3/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="https://adminlte.io/themes/v3/plugins/jquery-ui/jquery-ui.min.js"></script>
   <script src="https://adminlte.io/themes/v3/dist/js/adminlte.js?v=3.2.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
   <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
 
       $('#student_dt').DataTable({
         'serverside': true,
@@ -298,7 +303,7 @@ include 'includes/config.php';
         "columnDefs": [{
           "className": "dt-center",
           "targets": "_all"
-        }, ],
+        },],
         'ajax': {
           'url': 'student_tbl.php',
           'type': 'post',
@@ -321,13 +326,23 @@ include 'includes/config.php';
           student_no: $('#student_no').val()
         },
 
-        success: function(response) {
+        success: function (response) {
           var data = JSON.parse(response);
           if (data.status == 'data_exist') {
-            alert('Data already exists.');
+            Swal.fire({
+              title: 'Record Already Exist!',
+              icon: 'warning',
+              showConfirmButton: false,
+              timer: 1000
+            });
           } else if (data.status == 'success') {
             var c = $('#student_dt').DataTable().ajax.reload();
-            alert('Data added successfully.');
+            Swal.fire({
+              title: 'Record Added!',
+              icon: 'success',
+              showConfirmButton: false,
+              timer: 1000
+            });
           } else {
             alert('Failed to add data.');
           }
@@ -338,7 +353,7 @@ include 'includes/config.php';
           $('#name').val('')
           $('#sy').val('')
         },
-        error: function(xhr, status, error) {
+        error: function (xhr, status, error) {
           alert('Error: ' + error);
         }
       });
@@ -367,7 +382,7 @@ include 'includes/config.php';
       $('#hiddendata_student').val(update);
       $.post("student_edit.php", {
         update: update
-      }, function(data, status) {
+      }, function (data, status) {
         var userids = JSON.parse(data);
         console.log("Response:", userids);
 
@@ -384,7 +399,7 @@ include 'includes/config.php';
         $('#edit_section').append('<option value="" selected disabled>Select Section</option>');
 
         // Populate sections from the response
-        userids.sections.forEach(function(section) {
+        userids.sections.forEach(function (section) {
           $('#edit_section').append('<option value="' + section.section + '">' + section.section + '</option>');
 
 
@@ -416,11 +431,17 @@ include 'includes/config.php';
         year: year,
         student_no: student_no
 
-      }, function(data, status) {
+      }, function (data, status) {
         var jsons = JSON.parse(data);
         status = jsons.status;
         if (status == 'success') {
           var update = $('#student_dt').DataTable().ajax.reload();
+          Swal.fire({
+            title: 'Record Updated!',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 1000
+          });
         }
         $('#editStudentModal').modal("hide");
       });
@@ -431,25 +452,37 @@ include 'includes/config.php';
 
 
     function delete_student(id) {
-      $.ajax({
-
-        url: 'delete_student.php',
-        type: 'post',
-        data: {
-          id: id
-        },
-        success: function(data, status) {
-
-          var json = JSON.parse(data);
-          status = json.status;
-          if (status == 'success') {
-
-            $('#student_dt').DataTable().ajax.reload();
-
-
-          }
+      Swal.fire({
+        title: 'Are you sure?',
+        text: 'You are about to delete this record.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          $.ajax({
+            url: 'delete_student.php',
+            type: 'post',
+            data: {
+              id: id
+            },
+            success: function (data, status) {
+              var json = JSON.parse(data);
+              status = json.status;
+              if (status == 'success') {
+                $('#student_dt').DataTable().ajax.reload();
+                Swal.fire({
+                    title: 'Record Deleted!',
+                    text: 'The admin record has been successfully deleted.',
+                    icon: 'success',
+                  });
+              }
+            }
+          })
         }
-      })
+      });
     }
 
 
@@ -461,23 +494,23 @@ include 'includes/config.php';
           course_id: courseId
         },
         dataType: 'json',
-        success: function(sections) {
+        success: function (sections) {
           // Clear existing options in the Section dropdown
           sectionDropdown.html('<option value="" selected disabled>Select Section</option>');
 
           // Populate the Section dropdown with the fetched sections
-          $.each(sections, function(index, section) {
+          $.each(sections, function (index, section) {
             sectionDropdown.append('<option value="' + section.section + '">' + section.section + '</option>');
           });
         },
-        error: function(xhr, status, error) {
+        error: function (xhr, status, error) {
           console.error('AJAX Error:', status, error);
         }
       });
     }
 
 
-    $('#course').change(function() {
+    $('#course').change(function () {
       // Get the selected course ID
       var courseId = $(this).val();
 
@@ -485,7 +518,7 @@ include 'includes/config.php';
       populateSectionDropdown(courseId, $('#section'));
     });
 
-    $('#edit_course').change(function() {
+    $('#edit_course').change(function () {
       // Get the selected course ID
       var courseId = $(this).val();
 

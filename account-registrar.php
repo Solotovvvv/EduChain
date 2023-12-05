@@ -1,8 +1,8 @@
 <?php
 session_start();
 if (!isset($_SESSION['fullname'])) {
-    header('Location:login.php');
-    exit;
+  header('Location:login.php');
+  exit;
 }
 ?>
 
@@ -17,7 +17,8 @@ if (!isset($_SESSION['fullname'])) {
   <link rel="icon" href="dist/img/ucc-logo.png" />
   <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/fontawesome-free/css/all.min.css" />
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
-  <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css" />
+  <link rel="stylesheet"
+    href="https://adminlte.io/themes/v3/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css" />
   <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/icheck-bootstrap/icheck-bootstrap.min.css" />
   <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/jqvmap/jqvmap.min.css" />
   <link rel="stylesheet" href="https://adminlte.io/themes/v3/dist/css/adminlte.min.css?v=3.2.0" />
@@ -41,7 +42,8 @@ if (!isset($_SESSION['fullname'])) {
 
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <a href="#" class="brand-link">
-        <img src="dist/img/ucc-logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: 0.8" />
+        <img src="dist/img/ucc-logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+          style="opacity: 0.8" />
         <span class="brand-text font-weight-light">EduChain</span>
       </a>
 
@@ -136,7 +138,8 @@ if (!isset($_SESSION['fullname'])) {
   </div>
 
   <!-- add registrar modal -->
-  <div class="modal fade" id="addRegistrarModal" tabindex="-1" role="dialog" aria-labelledby="addRegistrarModalLabel" aria-hidden="true">
+  <div class="modal fade" id="addRegistrarModal" tabindex="-1" role="dialog" aria-labelledby="addRegistrarModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -175,7 +178,8 @@ if (!isset($_SESSION['fullname'])) {
   </div>
 
   <!-- edit registrar modal -->
-  <div class="modal fade" id="editRegistrarModal" tabindex="-1" role="dialog" aria-labelledby="editRegistrarModalLabel" aria-hidden="true">
+  <div class="modal fade" id="editRegistrarModal" tabindex="-1" role="dialog" aria-labelledby="editRegistrarModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -226,9 +230,10 @@ if (!isset($_SESSION['fullname'])) {
     <script src="https://adminlte.io/themes/v3/dist/js/adminlte.js?v=3.2.0"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <script>
-      $(document).ready(function() {
+      $(document).ready(function () {
 
         $('#registrar_dt').DataTable({
           'serverside': true,
@@ -237,7 +242,7 @@ if (!isset($_SESSION['fullname'])) {
           "columnDefs": [{
             "className": "dt-center",
             "targets": "_all"
-          }, ],
+          },],
           'ajax': {
             'url': 'adminRegistrar_tbl.php',
             'type': 'post',
@@ -259,13 +264,23 @@ if (!isset($_SESSION['fullname'])) {
             passwordR: $('#passwordR').val(),
             fullnameR: $('#fullnameR').val()
           },
-          success: function(response) {
+          success: function (response) {
             var data = JSON.parse(response);
             if (data.status == 'data_exist') {
-              alert('Data already exists.');
+              Swal.fire({
+                title: 'Record Already Exist!',
+                icon: 'warning',
+                showConfirmButton: false,
+                timer: 1000
+              });
             } else if (data.status == 'success') {
               var c = $('#registrar_dt').DataTable().ajax.reload();
-              alert('Data added successfully.');
+              Swal.fire({
+                title: 'Record Added!',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1000
+              });
             } else {
               alert('Failed to add data.');
             }
@@ -275,7 +290,7 @@ if (!isset($_SESSION['fullname'])) {
 
             $('#addRegistrarModal').modal("hide");
           },
-          error: function(xhr, status, error) {
+          error: function (xhr, status, error) {
             alert('Error: ' + error);
           }
         });
@@ -286,7 +301,7 @@ if (!isset($_SESSION['fullname'])) {
         $('#hiddendata_registrar').val(id);
         $.post("admin_controller_crud.php", {
           idR: id
-        }, function(data,
+        }, function (data,
           status) {
           var userids = JSON.parse(data);
           $('#edit_fullnameR').val(userids.full_name);
@@ -302,45 +317,64 @@ if (!isset($_SESSION['fullname'])) {
         var passwordR = $('#edit_passwordR').val();
         var hiddendata_registrar = $('#hiddendata_registrar').val();
 
-      
+
         $.post("admin_controller_crud.php", {
           passwordR: passwordR,
           hiddendata_registrar: hiddendata_registrar,
           usernameR: usernameR,
           fullnameR: fullnameR
-        }, function(data, status) {
+        }, function (data, status) {
           var jsons = JSON.parse(data);
           status = jsons.status;
           if (status == 'success') {
+            Swal.fire({
+              title: 'Record Updated!',
+              icon: 'success',
+              showConfirmButton: false,
+              timer: 1000
+            });
             var update = $('#registrar_dt').DataTable().ajax.reload();
           }
           $('#editRegistrarModal').modal("hide");
         });
-        
+
       }
 
-
       function delete_registrar_admin(id) {
-      $.ajax({
-
-        url: 'admin_controller_crud.php',
-        type: 'post',
-        data: {
-          removeR: id
-        },
-        success: function (data, status) {
-
-          var json = JSON.parse(data);
-          status = json.status;
-          if (status == 'success') {
-
-            $('#registrar_dt').DataTable().ajax.reload();
-
-
+        Swal.fire({
+          title: 'Are you sure?',
+          text: 'You are about to delete this registrar record.',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // User confirmed deletion
+            $.ajax({
+              url: 'admin_controller_crud.php',
+              type: 'post',
+              data: {
+                removeR: id
+              },
+              success: function (data, status) {
+                var json = JSON.parse(data);
+                status = json.status;
+                if (status == 'success') {
+                  Swal.fire({
+                    title: 'Record Deleted!',
+                    text: 'The admin record has been successfully deleted.',
+                    icon: 'success',
+                  });
+                  $('#registrar_dt').DataTable().ajax.reload();
+                }
+              }
+            });
           }
-        }
-      })
-    }
+        });
+      }
+
     </script>
 </body>
 

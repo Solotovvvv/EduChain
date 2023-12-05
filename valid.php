@@ -19,7 +19,25 @@
                 <p class="h1">Student Valid!</p>
             </div>
 
-            <p class="valid-text">The system has successfully validated the student. Access granted!</p>
+            <p class="valid-text">
+                <?php
+                $updateData = json_decode(file_get_contents('php://input'), true);
+
+                // Check if the keys exist before accessing them
+                $name = isset($updateData['name']) ? $updateData['name'] : '';
+                $studentNumber = isset($updateData['studentnumber']) ? $updateData['studentnumber'] : '';
+                $course = isset($updateData['course']) ? $updateData['course'] : '';
+                $schoolYear = isset($updateData['schoolyear']) ? $updateData['schoolyear'] : '';
+                $university = isset($updateData['univ']) ? $updateData['univ'] : '';
+
+                // Display the data
+                echo "Name: $name <br>";
+                echo "Student Number: $studentNumber <br>";
+                echo "Course: $course <br>";
+                echo "School Year: $schoolYear <br>";
+                echo "University: $university <br>";
+                ?>
+            </p>
         </div>
     </div>
 
