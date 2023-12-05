@@ -8,7 +8,7 @@ include 'includes/config.php';
 $pdo = Database::connection();
 
 $id = $_POST['id'];
-$sql = "SELECT *, c.abbreviation FROM `student` s INNER JOIN course c ON s.course = c.id WHERE s.id = :id";
+$sql = "SELECT *, c.abbreviation , c.course_name FROM `student` s INNER JOIN course c ON s.course = c.id WHERE s.id = :id";
 $stmt = $pdo->prepare($sql);
 $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 

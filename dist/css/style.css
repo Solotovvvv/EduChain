@@ -1,4 +1,4 @@
-.good-moral-hr {
+/* .good-moral-hr {
   display: block;
   height: 1px;
   border: 0;
@@ -38,7 +38,63 @@
 }
 .certificate-card {
   border: 1px solid #adadad;
+} */
+
+.body p {
+  text-align: justify;
 }
+.logo,
+.logo2,
+.header,
+.body,
+.body2,
+.signature {
+  font-family: "Times New Roman", Times, serif;
+}
+.ucc,
+.certification {
+  font-size: 1.5rem;
+}
+.name {
+  font-size: 2.5rem;
+}
+.good-moral-hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 5px solid #28a745;
+}
+.certificate-hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid grey;
+}
+.logo .ucc-logo img {
+  position: absolute;
+  top: 9%;
+  left: 15%;
+  transform: translate(-50%, -50%);
+}
+.logo .caloocan-logo img {
+  position: absolute;
+  top: 9%;
+  left: 85%;
+  transform: translate(-50%, -50%);
+}
+.logo2 .ucc-logo img {
+  position: absolute;
+  top: 15%;
+  left: 15%;
+  transform: translate(-50%, -50%);
+}
+.logo2 .caloocan-logo img {
+  position: absolute;
+  top: 15%;
+  left: 85%;
+  transform: translate(-50%, -50%);
+}
+
 .student-name {
   font-weight: 600;
 }

@@ -8,9 +8,15 @@ include './includes/config.php';
 
 $pdo = Database::connection();
 
-$sql = "SELECT s.id, s.fullname, c.course_name,s.studentNumber ,CONCAT(s.year, '-', s.section) AS yearSec, s.schooyear 
-        FROM student s
-        INNER JOIN course c ON s.course = c.id";
+// $sql = "SELECT s.id, s.fullname, c.course_name,s.studentNumber ,CONCAT(s.year, '-', s.section) AS yearSec, s.schooyear 
+//         FROM student s
+//         INNER JOIN course c ON s.course = c.id";
+
+$sql ="SELECT s.id, s.fullname, c.course_name, s.studentNumber, CONCAT(s.year, '-', s.section) AS yearSec, s.schooyear 
+FROM student s
+INNER JOIN course c ON s.course = c.id
+INNER JOIN schoolyear sy ON s.schooyear = sy.schoolyear
+WHERE sy.status = 1";
 $stmt = $pdo->prepare($sql);
 
 $data = [];

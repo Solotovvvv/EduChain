@@ -74,7 +74,7 @@
 
                     console.log('Current Ethereum address:', currentAccount);
 
-                    const contractAddress = '0xF4FD45271087e1f479ea5259bC493535340d0fB3';
+                    const contractAddress = '0xd6ceD349B1173522429cae9A2057539b61A7A0Fe';
                     const contractAbi = [{
                         "anonymous": false,
                         "inputs": [{

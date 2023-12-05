@@ -163,57 +163,60 @@ if (!isset($_SESSION['fullname'])) {
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body good-moral-modal text-center">
-          <div class="card p-5 bg-light">
-            <div class="deped-logo">
-              <img src="dist/img/deped-logo.png" alt="DepEd Logo" width="210">
-            </div>
+        <div class="modal-body">
+          <div class="logo">
             <div class="ucc-logo">
-              <img src="dist/img/ucc-logo.png" alt="UCC Logo" width="120">
+              <img src="ucc-logo.png" alt="UCC Logo" width="120">
+            </div>
+            <div class="caloocan-logo">
+              <img src="caloocan-logo.png" alt="Caloocan Logo" width="120">
+            </div>
+          </div>
+
+          <div class="header text-center">
+            <p class="m-0 font-weight-bold ucc">UNIVERSITY OF CALOOCAN CITY</p>
+            <p class="m-0"><i>(Formerly Caloocan City Polytechnic College)</i></p>
+            <p class="m-0">Biglang Awa St. 12th Ave. East. Caloocan City</p>
+            <p class="m-0">E-mail: registrar@ucc-caloocan.edu.ph</p>
+            <p class="m-0">Tel. no: 310-6855</p>
+          </div>
+
+          <hr class="good-moral-hr">
+
+          <div class="body pl-5 pr-5">
+            <p class="m-0 font-weight-bold pt-5 pb-5 text-center certification">C E R T I F I C A T I O
+              N</p>
+            <p class="font-weight-bold">TO WHOM IT MAY CONCERN:</p>
+            <p>
+              This is to certify that <u id="studentFullName"></u> is a student <b id="course"></b> in this University.
+            </p>
+            <p>
+              This further certifies that he/she has shown GOOD MORAL CHARACTER and has never been
+              disciplined for any violation of the school rules and regulations during his/her stay in
+              this University.
+            </p>
+            <p>
+              This certification is being issued upon request of Mr/Ms. <i style="text-decoration: underline;" id="student"></i> whatever legal purpose/s it
+              may serve him/her.
+            </p>
+          </div>
+
+          <div class="signature p-5">
+            <div class="guidance-counselor mb-4 text-right">
+              <p class="m-0 font-weight-bold">MARJORIE LOPEZ - TIU, M.A, RGC, RPM</p>
+              <p class="m-0"><i>Guidance Counselor<span class="text-white">***********</span></i></p>
             </div>
 
-            <p class="m-0">Republic of the Philippines</p>
-            <p class="m-0 font-weight-bold">Department of Education</p>
-            <p class="m-0">REGION VIII</p>
-            <p class="m-0 font-weight-bold">DIVISION OF SOUTHERN LEYTE</p>
-            <p class="m-0">District of Malitbog</p>
-            <p class="m-0 font-weight-bold">CONCEPCION NATIONAL HIGH SCHOOL</p>
-
-            <hr class="good-moral-hr">
-
-            <h2 class="pt-4">CERTIFICATION</h2>
-
-            <div class="text-left p-4">
-              <p class="font-weight-bold">TO WHOM IT MAY CONCERN:</p>
-
-              <p>
-                <span class="text-white">******</span>This is to certify that <u id="studentFullName"></u> is officially
-                enrolled as <b id="Year">th</b> Year student of <b id="course"></b>
-                during the school year <b id="schoolyear"><b>.
-              </p>
-              <p>
-                <span class="text-white">******</span>This is to certify further that he/she is a student of good moral
-                character and ahs no property or financial responsibility in this school.
-              </p>
-              <p>
-                <span class="text-white">******</span>This certification is issued upon request of the student concerned
-                for his/her desire to transfer to another school.
-              </p>
-              <p>
-                <span class="text-white">******</span>Done this 29th day of September, 2009 at Concepcion National High
-                School, Concepcion, Malitbog, Southern Leyte, Philippines.
-              </p>
-            </div>
-
-            <div class="text-right mt-5 pr-4">
-              <p class="m-0 font-weight-bold">ROSALINA L. AGAPAY</p>
-              <p class="m-0">Principal I <span class="text-white">******</span></p>
+            <div class="registrar">
+              <p class="m-0 font-weight-bold mb-5">Noted:</p>
+              <p class="m-0 font-weight-bold">PROF. MARIA CECILIA M. SAENZ</p>
+              <p class="m-0"><i><span class="text-white">*</span>University Registrar - South
+                  Campus</i></p>
             </div>
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" onclick="printButton()">PRINT</button>
-
           <input type="hidden" id="hiddendata_s">
         </div>
       </div>
@@ -231,22 +234,36 @@ if (!isset($_SESSION['fullname'])) {
           </button>
         </div>
         <div class="modal-body text-center">
-          <div class="card p-5 bg-light certificate-card">
-            <h3 class="certification-of-graduation">CERTIFICATE OF GRADUATION</h3>
-            <p class="mt-4 mb-4">This is awarded to</p>
-            <h1 class="student-name" id="fullname">Nicollette Loanne F. Porca</h1>
-            <p class="m-0 mt-3">for successfully completing the Timpton International High School curriculum.</p>
+          <div class="logo2 mt-4 mb-5">
+            <div class="ucc-logo">
+              <img src="ucc-logo.png" alt="UCC Logo" width="75">
+            </div>
+            <div class="caloocan-logo">
+              <img src="caloocan-logo.png" alt="Caloocan Logo" width="85">
+            </div>
 
-            <div class="row text-center">
+            <p class="m-0 font-weight-bold ucc">UNIVERSITY OF CALOOCAN CITY</p>
+            <p class="m-0"><i>Biglang Awa St. 12th Ave. East. Caloocan City</i></p>
+          </div>
+          <div class="body2">
+            <p class="m-0 font-weight-bold certification mt-4 mb-4">CERTIFICATE OF GRADUATION</p>
+            <p class="m-0">This is awarded to</p>
+            <p class="m-0 font-weight-bold name mt-4 mb-4" id="fullname"></p>
+            <p class="m-0 mb-5">for successfully completing the University Of Caloocan City
+              curriculum.
+            </p>
+          </div>
+          <div class="signature mb-4">
+            <div class="row">
               <div class="col-sm-2"></div>
               <div class="col-sm-4">
                 <hr class="certificate-hr">
-                <p class="m-0 font-weight-bold school-director">Rufus Stewart</p>
+                <p class="m-0 font-weight-bold">Nicollette Loanne F. Porca</p>
                 <p class="m-0">SCHOOL DIRECTOR</p>
               </div>
               <div class="col-sm-4">
                 <hr class="certificate-hr">
-                <p class="m-0 font-weight-bold associate-director">Irene O'Shair</p>
+                <p class="m-0 font-weight-bold">Nicollette Loanne F. Porca</p>
                 <p class="m-0">ASSOCIATE DIRECTOR</p>
               </div>
               <div class="col-sm-2"></div>
@@ -290,8 +307,8 @@ if (!isset($_SESSION['fullname'])) {
           currentAccount = accounts[0]; // Assign to the higher-scoped variable
 
           console.log('Current Ethereum address:', currentAccount);
-
-          const contractAddress = '0xF4FD45271087e1f479ea5259bC493535340d0fB3';
+          // MIS - 0xF4FD45271087e1f479ea5259bC493535340d0fB3
+          const contractAddress = '0xd6ceD349B1173522429cae9A2057539b61A7A0Fe';
           const contractAbi = [{
               "anonymous": false,
               "inputs": [{
@@ -583,9 +600,11 @@ if (!isset($_SESSION['fullname'])) {
           //console.log(data)
           // Update the modal with the student's full name
           $('#studentFullName').text(data.fullname);
-          $('#course').text(data.abbreviation);
+          $('#course').text(data.course_name);
           $('#Year').text(data.year + "th");
           $('#schoolyear').text(data.schooyear);
+          $('#student').text(data.fullname);
+
 
           // You might want to update other parts of the modal with additional student information
         },

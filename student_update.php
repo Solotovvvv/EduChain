@@ -19,7 +19,7 @@ if (isset($_POST['hiddendata_student'])) {
     $year = $_POST['year'];
     $student_no = strtoupper($_POST['student_no']);
 
-    $sql = "UPDATE student SET fullname = :name, course = :course, schooyear = :sy, section = :section, year = :year, studentNumber=:student_no WHERE id = :id";
+    $sql = "UPDATE student SET fullname = :name, course = :course, schooyear = :sy, section = :section, year = :year, studentNumber=:student_no, status= '0' WHERE id = :id";
     $stmt = $pdo->prepare($sql);
 
     if ($stmt->execute([
