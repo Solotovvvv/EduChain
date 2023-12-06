@@ -2,43 +2,49 @@
 include 'includes/config.php';
 require('fpdf/fpdf.php');
 
-class PDF extends FPDF
-{
+class PDF extends FPDF {
     private $studentData;
 
-    public function setStudentData($data)
-    {
+    public function setStudentData($data) {
         $this->studentData = $data;
     }
-    function ChapterTitle()
-    {
-        $title = 'CERTIFICATE OF GRADUATION';
+    function Header() {
+        $this->Image('background.jpg', 0, 0, 300, 0); //x,y,width,height
+        $this->Image('ucc-logo.jpg', 50, 26, 20, 0); //x,y,width,height
+        $this->Image('caloocan-logo.jpg', 225, 27, 23, 0); //x,y,width,height
 
-        $this->Ln(35);
-        $this->SetFont('Times', '', 25);
-        $this->Cell(0, 5, $title, 0, 1, 'C');
-        $this->Ln(15);
+        $this->Ln(20);
+        $this->SetFont('Times', 'B', 25);
+        $this->Cell(0, 10, 'UNIVERSITY OF CALOOCAN CITY', 0, 1, 'C');
+        $this->SetFont('Times', 'I', 14);
+        $this->Cell(0, 5, 'Biglang Awa St. 12th Ave. East, Caloocan City', 0, 1, 'C');
+        $this->Ln(20);
+        // $title = 'CERTIFICATE OF GRADUATION';
+
+        // $this->Ln(35);
+        // $this->SetFont('Times', '', 25);
+        // $this->Cell(0, 5, $title, 0, 1, 'C');
+        // $this->Ln(15);
     }
 
-    function ChapterBody()
-    {
-        $txt = 'This is awarded to';
+    function ChapterBody() {
+        $this->SetFont('Times', 'B', 25);
+        $this->Cell(0, 5, 'CERTIFICATE OF GRADUATION', 0, 1, 'C');
+        $this->Ln(15);
+     
 
-        $this->SetFont('Helvetica', '', 14);
-        $this->Cell(0, 5, $txt, 0, 1, 'C');
+        $this->SetFont('Times', '', 14);
+        $this->Cell(0, 5, 'This is awarded to', 0, 1, 'C');
         $this->Ln(15);
 
         $studentName = $this->studentData['fullname'];;
-
-        $this->SetFont('Times', 'B', 35);
+        $this->SetFont('Times', 'B', 40);
         $this->Cell(0, 5, $studentName, 0, 1, 'C');
         $this->Ln(15);
 
-        $txt2 = 'for successfully completing the Timpton International High School curriculum.';
-
-        $this->SetFont('Helvetica', '', 14);
-        $this->Cell(0, 5, $txt2, 0, 1, 'C');
-        $this->Ln(30);
+        $this->SetFont('Times', '', 14);
+        $this->Cell(0, 5, 'for successfully completing the University Of Caloocan City curriculum.', 0, 1, 'C');
+        $this->Ln(25);
 
         $this->SetFillColor(0, 0, 0);
         $this->Cell(59, .5, '', 0, 0, 'C');
@@ -46,30 +52,27 @@ class PDF extends FPDF
         $this->Cell(20, .5, '', 0, 0, 'C');
         $this->Cell(70, .5, '', 0, 0, 'C', true);
         $this->Cell(59, .5, '', 0, 1, 'C');
-        $this->Ln(2);
-
-        $schoolDirector = 'Nicollette Loanne F. Porca';
-        $associateDirector = 'Nicollette Loanne F. Porca';
+        $this->Ln(1);
 
         $this->SetFont('Times', 'B', 15);
         $this->Cell(59, 7, '', 0, 0, 'C');
-        $this->Cell(70, 7, $schoolDirector, 0, 0, 'C');
+        $this->Cell(70, 7, 'Dr. Marilyn T. De Jesus, DPA', 0, 0, 'C');
         $this->Cell(20, 5, '', 0, 0, 'C');
-        $this->Cell(70, 7, $associateDirector, 0, 0, 'C');
+        $this->Cell(70, 7, 'Prof. Ma. Cecilia M. Saenz', 0, 0, 'C');
         $this->Cell(59, 7, '', 0, 1, 'C');
 
-        $this->SetFont('Helvetica', '', 14);
+        $this->SetFont('Times', '', 14);
         $this->Cell(59, 5, '', 0, 0, 'C');
-        $this->Cell(70, 5, 'SCHOOL DIRECTOR', 0, 0, 'C');
+        $this->Cell(70, 5, 'OIC PRESIDENT ', 0, 0, 'C');
         $this->Cell(20, 5, '', 0, 0, 'C');
-        $this->Cell(70, 5, 'ASSOCIATE DIRECTOR', 0, 0, 'C');
+        $this->Cell(70, 5, 'HEAD, REGISTRAR', 0, 0, 'C');
         $this->Cell(59, 5, '', 0, 1, 'C');
-    }
 
-    function PrintChapter()
-    {
+    
+    }
+    function PrintChapter() {
         $this->AddPage();
-        $this->ChapterTitle();
+        // $this->ChapterTitle();
         $this->ChapterBody();
     }
 }

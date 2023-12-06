@@ -258,13 +258,13 @@ if (!isset($_SESSION['fullname'])) {
               <div class="col-sm-2"></div>
               <div class="col-sm-4">
                 <hr class="certificate-hr">
-                <p class="m-0 font-weight-bold">Nicollette Loanne F. Porca</p>
-                <p class="m-0">SCHOOL DIRECTOR</p>
+                <p class="m-0 font-weight-bold">Dr. Marilyn T. De Jesus, DPA</p>
+                <p class="m-0">OIC PRESIDENT</p>
               </div>
               <div class="col-sm-4">
                 <hr class="certificate-hr">
-                <p class="m-0 font-weight-bold">Nicollette Loanne F. Porca</p>
-                <p class="m-0">ASSOCIATE DIRECTOR</p>
+                <p class="m-0 font-weight-bold">Prof. Ma. Cecilia M. Saenz</p>
+                <p class="m-0">HEAD, REGISTRAR</p>
               </div>
               <div class="col-sm-2"></div>
             </div>
